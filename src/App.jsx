@@ -1,7 +1,11 @@
-import './App.css'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
 import { BrowserRouter, NavLink,Route,Routes,Navigate } from 'react-router-dom';
+import React from 'react';
+
+//componant
+import Nav1 from './components/Nav1';
+
 
 //page
 import Home from './pages/Home';
@@ -9,13 +13,11 @@ import About from './pages/about';
 import User from './pages/user';
 import Dashbord from './pages/Dashboard';
 
+//UseState
 import { useState } from 'react';
 
-
-
-function App() {
-
-  const [loggidIn,SetLoggedIn] = useState(null)
+function Nav(){
+    const [loggidIn,SetLoggedIn] = useState(null)
 
   function handleLogin(){
     SetLoggedIn(true)
@@ -28,14 +30,14 @@ function App() {
   console.log(loggidIn)
 
   let activeClassName = "nav-active"
-
-  return (
-    <>
-      
-      <BrowserRouter>
+    return <>
+    <div>
+      <Nav1/>
+    </div>
+    <BrowserRouter>
       <header>
         <h1>
-          hello routerrrrrr
+          hello router
         </h1>
       </header>
       <nav>
@@ -54,7 +56,6 @@ function App() {
       
       </BrowserRouter>
     </>
-  )
 }
 
-export default App
+export default Nav
