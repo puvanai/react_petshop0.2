@@ -1,0 +1,22 @@
+.logo{
+    display: flex;
+    align-items: center;
+}
+.imagelogo{
+    margin-right: 100px;
+    
+}
+.logoname{
+    margin-bottom: 0;
+}
+.AppHeader{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px 4px 12px;
+    border-bottom: 1px solid black;
+    background-color: rgb(255, 255, 255);
+    
+  
+  }

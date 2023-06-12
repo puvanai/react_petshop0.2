@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap');
+
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Thai', sans-serif;
 }
-.nav-active{
-  color: #777474;
-  font-weight: bold;
+
+.SideMenuAndPageContent{
+  align-items: flex-start;
+  flex: 1;
+  
+}
+.MainPage{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
 }
