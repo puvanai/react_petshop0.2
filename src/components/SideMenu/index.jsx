@@ -34,12 +34,12 @@ function SideMenu () {
                         key:'/AddProduct'
                     },
                     {
-                        label:"เกียวกับ",
+                        label:"ตั้งค่าบัญชี",
                         icon:<QuestionCircleOutlined />,
                         key:'/about'
                     },
                     {
-                        label:"ตั้งค่า",
+                        label:"จัดการพนักงาน",
                         icon:<SettingOutlined />,
                         key:'/settingpage'
                     },

@@ -33,7 +33,7 @@ function App(){
 
       </Space>
 
-      <AppFooter/>
+      
       
     </div>
    

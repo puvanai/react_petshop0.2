@@ -43,16 +43,6 @@ function AddProduct () {
             <hr />
             <div className="employees">
                 <button className="btn btn-primary" onClick={getEmployees}>แสดงข้อมูล</button>
-
-                {employeesList.map((val, key) => {
-                    return (
-                        <div className="employees card">
-                            <div className="crad-body" text-left>
-                                <p className="crad-text">Name: {val.fristname}</p>
-                            </div>
-                        </div>
-                    )
-                })}
             </div>
         </div>
     </>
