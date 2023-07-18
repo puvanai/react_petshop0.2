@@ -28,6 +28,7 @@ function SideMenu () {
                         icon:<FileOutlined />,
                         key:'/Productlist'
                     },
+                    
                     {
                         label:"เพิ่มรายการสินค้า",
                         icon:<PlusCircleOutlined/>,
@@ -43,6 +44,8 @@ function SideMenu () {
                         icon:<SettingOutlined />,
                         key:'/settingpage'
                     },
+                    
+                    
                     {
                         label:"ออกจากระบบ",
                         icon:<PoweroffOutlined />,

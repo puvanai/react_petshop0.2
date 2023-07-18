@@ -1,0 +1,24 @@
+.SideMenu{
+    height: 100%;
+    width: 200px;
+    
+}
+.SidemenuVertical{
+    height: 100%;
+    background-color: rgb(243, 213, 136);   
+    
+
+ 
+
+    
+}
+.classmenu{
+    height: 100vh;
+}
+.menuHeader {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }

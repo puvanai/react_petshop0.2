@@ -10,10 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
 //componant
-import AppHeader from './components/AppHeader';
-import SideMenu from './components/SideMenu';
-import PageContent from './components/PageContent';
-import AppFooter from './components/AppFooter';
+import AppHeader from './components/admincompo/AppHeader';
+import SideMenu from './components/admincompo/SideMenu';
+import PageContent from './components/admincompo/PageContent';
 
 
 //page

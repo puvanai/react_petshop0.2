@@ -1,4 +1,4 @@
-import AppRoutes from "../AppRoutes";
+import AppRoutes from "../../AppRoutes";
 import "./PageContent.css"
 
 function PageContent () {

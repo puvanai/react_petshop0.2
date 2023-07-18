@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import LoginPage from './loginpage.jsx'
+import Petfront from './Petfront.jsx'
 
 
 
@@ -11,8 +12,8 @@ import LoginPage from './loginpage.jsx'
     <React.StrictMode>
       
       <BrowserRouter>
-      <App />
-      
+      <Petfront />
+
       </BrowserRouter>
       
       

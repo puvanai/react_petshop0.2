@@ -1,0 +1,35 @@
+.textname{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+.navbarcon{
+    padding-left: 50px;
+    display: flex;
+    
+}
+.navbar1 {
+    margin-right: auto;
+  }
+  
+  .formsearch {
+    margin-left: 750px;
+  }
+
+.content{
+    margin-top: 50px;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+
+}
+.quantity{
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+.modals{
+    
+    margin-top: 50px;
+}
