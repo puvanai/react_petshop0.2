@@ -1,220 +1,156 @@
-import './Typepeoduct.css'
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-
-import Form from 'react-bootstrap/Form'
-
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-
-import Navbar from 'react-bootstrap/Navbar';
-
-import Modal from 'react-bootstrap/Modal';
+import './Typepeoduct.css';
+import { Button, Modal, Card, Col, Table, Input } from 'antd';
 import { useState } from 'react';
 
-import Table from 'react-bootstrap/Table';
-
-
-
-
-
 function TypePeoduct() {
-  const [show, setShow] = useState(false);
+  const gridStyle = {
+    width: '50%',
+    textAlign: 'center',
+  };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const employeeName = "นายสมหวัง เงินสั่งได้";
+  const [open, setOpen] = useState(false);
+  const [dogNumberInput, setDogNumberInput] = useState("");
+  const [catNumberInput, setCatNumberInput] = useState("");
+  const [dogItemName, setDogItemName] = useState("ขนมหมา");
+  const [catItemName, setCatItemName] = useState("ขนมหมาตรางู");
+  const [combinedTableData, setCombinedTableData] = useState([]);
+  const columns = [
+    {
+      title: 'ชื่อสินค้า',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'จำนวณ',
+      dataIndex: 'item',
+      key: 'item',
+    },
+  ];
+  const calculateRemainingDogFood = () => {
+    const totalDogFood = 100; // จำนวนอาหารหมาเริ่มต้น
+    const usedDogFood = combinedTableData.reduce((total, item) => {
+      if (item.name === dogItemName) {
+        return total + item.item;
+      }
+      return total;
+    }, 0);
+    return totalDogFood - usedDogFood;
+  };
 
-  return <>
-  <div className='textname'>
-    <Card body>ชื่อพนักงาน นายสมหวัง เงินสั่งได้</Card>
-  </div>
+  const calculateRemainingCatFood = () => {
+    const totalCatFood = 100; // จำนวนอาหารหมาเริ่มต้น
+    const usedCatFood = combinedTableData.reduce((total, item) => {
+      if (item.name === catItemName) {
+        return total + item.item;
+      }
+      return total;
+    }, 0);
+    return totalCatFood - usedCatFood;
+  };
 
-  <div className='navbarcon'>
-    <div className='navbar1'>
-          <Navbar expand="lg" className="">
-            <Container fluid>
-              <Navbar.Brand href="#">อาหารหมา</Navbar.Brand>
-              
-            </Container>
-          </Navbar>
-    </div>
+  const handleDogConfirm = () => {
+    if (dogNumberInput !== "") {
+      const newitem = parseFloat(dogNumberInput);
+      // คำนวณจำนวนอาหารหมาที่เหลือ
+      const remainingDogFood = combinedTableData.reduce((total, item) => {
+        if (item.name === dogItemName) {
+          return total - item.item;
+        }
+        return total;
+      }, 100); // 100 คือจำนวนอาหารหมาเริ่มต้น
+      if (newitem <= remainingDogFood) {
+        const newRow = {
+          key: (combinedTableData.length + 1).toString(),
+          name: dogItemName,
+          item: newitem,
+        };
+        setCombinedTableData([...combinedTableData, newRow]);
+      } else {
+        // แจ้งเตือนถ้าจำนวนที่นำออกมากกว่าที่มี
+        alert("จำนวนที่นำออกมากกว่าจำนวนที่มี");
+      }
+      setDogNumberInput("");
+    }
+  };
 
-    
-      
-      <div className='formsearch'>
-               <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button  variant="outline-success">Search</Button>
-              </Form>
+  const handleCatConfirm = () => {
+    if (catNumberInput !== "") {
+      const newitem = parseFloat(catNumberInput);
+      const newRow = {
+        key: (combinedTableData.length + 1).toString(),
+        name: catItemName,
+        item: newitem,
+      };
+      setCombinedTableData([...combinedTableData, newRow]);
+      setCatNumberInput("");
+    }
+  };
+
+  return (
+    <>
+      <div className='Cardname'>
+        <Col span={20}>
+          <Card title="ชื่อพนักงาน" bordered={false}>
+            {employeeName}
+          </Card>
+        </Col>
       </div>
-            
-  </div>
-  <div className='modals'>
-    <Button variant="success" onClick={handleShow}>
-        บันทึก
-      </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>ยืนยันการบันทึก</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <div>
+        <Button type="primary" onClick={() => setOpen(true)}>
+          รายการนำออก ( {combinedTableData.length})
+        </Button>
+        <Modal
+          title="รายการนำออก"
+          centered
+          open={open}
+          onOk={() => setOpen(false)}
+          onCancel={() => setOpen(false)}
+          width={1000}
+        >
+          <Table dataSource={combinedTableData} columns={columns} pagination={{ pageSize: 4 }} />
+        </Modal>
+      </div>
 
-        <Table striped bordered hover variant="light">
-      <thead>
-        <tr>
-          <th></th>
-          <th>รหัสสินค้า</th>
-          <th>ชื่อสินค้า</th>
-          <th>จำนวน</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>6204800013</td>
-          <td>Hajiko</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>4582245952</td>
-          <td>Thornton</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>8882245952</td>
-          <td>suck</td>
-          <td>7</td>
-        </tr>
-        
-      </tbody>
-    </Table>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            ปิด
+      <div className='Cardcontent'>
+        <Card title="รายการ">
+        <Card.Grid style={gridStyle}>
+          <div className='DogName'>
+            <div>{dogItemName}</div>
+            <div>จำนวนอาหารหมาที่เหลือ: {calculateRemainingDogFood()} ชิ้น</div>
+          </div>
+          <Input
+            type="number"
+            placeholder="จำนวนที่นำออกไปขาย (ขนมหมา)"
+            value={dogNumberInput}
+            onChange={(e) => setDogNumberInput(e.target.value)}
+          />
+          <Button type="primary" onClick={handleDogConfirm}>
+            ยืนยัน (ขนมหมา)
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            ยืนยัน
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    <div
-      className="modal show"
-      style={{ display: 'block', position: 'initial' }}
-    >
-      
-    </div>
-    </div>
+        </Card.Grid>
 
-  <div className='content'>
-  <CardGroup>
-      <Card>
-        <Card.Img variant="top" src="https://res-4.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_900,q_auto,w_900/v1/media/catalog/product/a/2/a221100137221-1.jpg?_i=AB" />
-        <Card.Body>
-          <Card.Title>Hajiko </Card.Title>
-          <Card.Text>
-          อาหารเม็ดสำหรับลูกสุนัข รสเนื้อวัวและนม 1.2 kg
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-        <div className='footer'>
-          <div>จำนวน</div>
-          <div className='quantity'>
-            1500
-          </div>
-          <div>ชิ้น</div>
-          </div>        </Card.Footer>
-          <Form.Group className="mb-3" controlId="formBasic">
-        
-        <Form.Control type="text" placeholder="กรอกจำนวนที่นำออก" />
-        
-      </Form.Group>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src="https://res-2.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_900,q_auto,w_900/v1/media/catalog/product/A/2/A211200073977-4.jpg?_i=AB" />
-        <Card.Body>
-          <Card.Title>Greattitan</Card.Title>
-          <Card.Text>
-          เกรทไททัน อาหารเม็ด สำหรับสุนัขโตสายพันธุ์เล็ก รสไก่และข้าว
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-        <div className='footer'>
-          <div>จำนวน</div>
-          <div className='quantity'>
-            13550
-          </div>
-          <div>ชิ้น</div>
-          </div>        </Card.Footer>
-          <Form.Group className="mb-3" controlId="formBasic">
-        
-        <Form.Control type="text" placeholder="กรอกจำนวนที่นำออก" />
-        
-      </Form.Group>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src="https://res-3.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_900,q_auto,w_900/v1/media/catalog/product/4/3/4307000670001-1.jpg?_i=AB" />
-        <Card.Body>
-          <Card.Title>Mascota</Card.Title>
-          <Card.Text>
-          มาสโคต้า อาหารเม็ด สำหรับเม่น 600 g.{' '}
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-        <div className='footer'>
-          <div>จำนวน</div>
-          <div className='quantity'>
-            450
-          </div>
-          <div>ชิ้น</div>
-          </div>
-        </Card.Footer>
-        
-      <Form.Group className="mb-3" controlId="formBasic">
-        
-        <Form.Control type="text" placeholder="กรอกจำนวนที่นำออก" />
-        
-      </Form.Group>
-      </Card>
+          <Card.Grid style={gridStyle}>
+            <div className='CatName'>
+            <div >{catItemName}</div>
+            <div>จำนวนอาหารหมาที่เหลือ: {calculateRemainingCatFood()} ชิ้น</div>
 
-      <Card>
-        <Card.Img variant="top" src="https://res-2.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_900,q_auto,w_900/v1/media/catalog/product/4/1/4110030240001-1_1.jpg?_i=AB" />
-        <Card.Body>
-          <Card.Title>Greattitan</Card.Title>
-          <Card.Text>
-          เกรทไททัน อาหารเม็ด สำหรับสุนัขโตสายพันธุ์เล็ก รสไก่และข้า
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <div className='footer'>
-          <div>จำนวน</div>
-          <div className='quantity'>
-            150
-          </div>
-          <div>ชิ้น</div>
-          </div>
-        </Card.Footer>
-        <Form.Group className="mb-3" controlId="formBasic">
-        
-        <Form.Control type="text" placeholder="กรอกจำนวนที่นำออก" />
-        
-      </Form.Group>
-      </Card>
-    </CardGroup>
-  </div>
-  </>
-  
+            </div>
+            <Input
+              type="number"
+              placeholder="จำนวนนำออกไปขาย (ขนมหมาตรางู)"
+              value={catNumberInput}
+              onChange={(e) => setCatNumberInput(e.target.value)}
+            />
+            <Button type="primary" onClick={handleCatConfirm}>
+              ยืนยัน (ขนมหมาตรางู)
+            </Button>
+          </Card.Grid>
+        </Card>
+      </div>
+    </>
+  );
 }
-
-
 
 export default TypePeoduct;

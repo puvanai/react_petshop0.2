@@ -12,7 +12,7 @@ import Petfront from './Petfront.jsx'
     <React.StrictMode>
       
       <BrowserRouter>
-      <Petfront />
+      <App />
 
       </BrowserRouter>
       

@@ -1,42 +1,110 @@
-import {   Typography } from "antd"
+import {   Card,Typography, Table} from "antd"
 import "./ProductList.css"
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
+import Modal from 'react-bootstrap/Modal';
 
 
+const tabList = [
+    {
+      key: 'tab1',
+      tab: 'tab1',
+    },
+    {
+      key: 'tab2',
+      tab: 'tab2',
+    },
+  ];
 
+ 
 
-const listproduct ="liverpool"
-const listimg ="https://upload.wikimedia.org/wikipedia/th/thumb/d/d1/Liverpool_FC_Logo.svg/1200px-Liverpool_FC_Logo.svg.png"
+  const tabListNoTitle = [
+    {
+      key: 'dogfood',
+      label: 'อาหารหมา',
+    },
+    {
+      key: 'catfood',
+      label: 'อาหารแมว',
+    },
+    {
+      key: 'pettoy',
+      label: 'อุปกรณ์',
+    },
+  ];
+  const contentListNoTitle = {
+    dogfood: <p>article content</p>,
+    catfood: <p>app content</p>,
+    pettoy: <p>project content</p>,
+  };
+
+  const catfoodData = [
+    {
+      key: "1",
+      name: "อาหารแมวแบรนด์ A",
+      items: 154,
+    },
+    {
+      key: "2",
+      name: "อาหารแมวแบรนด์ B",
+      items: 320,
+    },
+    // เพิ่มรายการอื่น ๆ ตามความต้องการ
+  ];
+  
+
+  const dogfoodData = [
+    {
+      key: "1",
+      name: "อาหารหมาตรางู",
+      items: 254,
+    },
+    {
+      key: "2",
+      name: "อาหารหมาตรานกแก้ว",
+      items: 500,
+    },
+    {
+      key: "3",
+      name: "อาหารหมาตราอีเกิ้ง",
+      items: 254,
+    },
+    {
+      key: "4",
+      name: "เพ็ดดีกี",
+      items: 500,
+    },
+    {
+      key: "5",
+      name: "อาหารหมาตรางูสิง",
+      items: 254,
+    },
+    {
+      key: "6",
+      name: "ของเลนแมวตราลิง",
+      items: 500,
+    },
+    
+  ];
+
 
 function ProductList () {
+
+  const [activeTabKey2, setActiveTabKey2] = useState('app');
+  
+  const onTab2Change = (key) => {
+    setActiveTabKey2(key);
+  };
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [quantity, setQuantity] = useState(0);
-
-    const increaseQuantity = () => {
-        setQuantity(quantity + 1);
-    };
-
-    const decreaseQuantity = () => {
-        if (quantity > 0) {
-        setQuantity(quantity - 1);
-    }
-  };
-
     return<>
-    
     
         <div>
             <Typography.Title level={4}>รายการสินค้า</Typography.Title>
@@ -85,12 +153,7 @@ function ProductList () {
         <br />
         <Navbar bg="light" data-bs-theme="light">
         <Container>
-          <Navbar.Brand href="#home">หมวดหมู่</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">หมา</Nav.Link>
-            <Nav.Link href="#features">แมว</Nav.Link>
-            <Nav.Link href="#pricing">อุปกรณ์สัตว์เลี้ยง</Nav.Link>
-          </Nav>
+          
           <Form className="d-flex">
             <Form.Control
               type="search"
@@ -102,83 +165,63 @@ function ProductList () {
           </Form>
         </Container>
       </Navbar>
-      <br />
+    
       <hr />
-      
         <br />
-            <div className="cardgroup-size" >
-                <CardGroup className="cardgroup-spacing">
-                        <Card className="card-spacing1">
-                            <Card.Img variant="top" src="https://www.petnme.co.th//media/catalog/product/a/2/a211200078974-1.jpg" />
-                            <Card.Body>
-                                <hr />
-                            <Card.Title>อาหารแมวเม็ด</Card.Title>  
-                            <div className="button-container">
-                            <Button variant="light  " onClick={increaseQuantity}>  
-                            +
-                            </Button>
-                             {quantity}
-                            <Button variant="light" onClick={decreaseQuantity}>
-                            -
-                            </Button>
-                            </div>
-                            </Card.Body>
-                            
-                        </Card>
-                        <Card className="card-spacing1">
-                            <Card.Img variant="top" src="https://res-4.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_900,q_auto,w_900/v1/media/catalog/product/a/2/a220200081859-1.jpg?_i=AB" />
-                            <Card.Body>
-                            <hr />
-                            <Card.Title>Hercules เฮอร์คิวลิส อาหารเปียก</Card.Title>
-                            <div className="button-container">
-                            <Button variant="light" onClick={increaseQuantity}>  
-                            +
-                            </Button>
-                             {quantity}
-                            <Button variant="light" onClick={decreaseQuantity}>
-                            -
-                            </Button>
-                            </div>
-                            </Card.Body>
-                        </Card>
-                        <Card className="card-spacing2">
-                            <Card.Img variant="top" src="https://res-3.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_900,q_auto,w_900/v1/media/catalog/product/a/2/a230300143231-1.jpg?_i=AB" />
-                            <Card.Body>
-                                <hr />
-                            <Card.Title>Hercules เฮอร์คิวลิส อาหารเม็ด</Card.Title>
-                            <div className="button-container">
-                            <Button variant="light" onClick={increaseQuantity}>  
-                            +
-                            </Button>
-                             {quantity}
-                            <Button variant="light" onClick={decreaseQuantity}>
-                            -
-                            </Button>
-                            </div>
-                            </Card.Body>
-                            
-                        </Card>
-                        <Card className="card-spacing3">
-                            <Card.Img variant="top" src="https://res-3.cloudinary.com/central-pet-n-me/image/upload/c_lpad,dpr_2.0,f_auto,h_600,q_auto,w_600/v1/media/catalog/product/1/1/1101010790001-1_1.jpg?_i=AB" />
-                            <Card.Body>
-                            <hr />
-                            <Card.Title>อาหารหมา</Card.Title>
-                            <div className="button-container">
-                            <Button variant="light" onClick={increaseQuantity}>  
-                            +
-                            </Button>
-                             {quantity}
-                            <Button variant="light" onClick={decreaseQuantity}>
-                            -
-                            </Button>
-                            </div>
-                            </Card.Body>
-                            
-                        </Card>
-                </CardGroup>
-            </div>
-                
 
+        <div className="cardgroup-size" >
+            <Card
+                    style={{
+                        width: '1000px',
+                    }}
+                    tabList={tabListNoTitle}
+                    activeTabKey={activeTabKey2}
+                    tabBarExtraContent={<a href="#">More</a>}
+                    onTabChange={onTab2Change}
+                    tabProps={{
+                        size: 'middle',
+                    }}
+                    >
+
+                    {contentListNoTitle[activeTabKey2] === contentListNoTitle.dogfood ? (
+                        <Table
+                        dataSource={dogfoodData}
+                        columns={[
+                            {
+                            title: 'ชื่อรายการ',
+                            dataIndex: 'name',
+                            key: 'name',
+                            },
+                            {
+                            title: 'จำนวณทั้งหมด',
+                            dataIndex: 'items',
+                            key: 'items',
+                            },
+                        ]}
+                        pagination={{ pageSize: 5 }} 
+                        />
+                    ) : null}
+
+                    {contentListNoTitle[activeTabKey2] === contentListNoTitle.catfood ? (
+                        <Table
+                        dataSource={catfoodData}
+                        columns={[
+                            {
+                            title: 'ชื่อรายการ',
+                            dataIndex: 'name',
+                            key: 'name',
+                            },
+                            {
+                            title: 'จำนวณทั้งหมด',
+                            dataIndex: 'items',
+                            key: 'items',
+                            },
+                        ]}
+                        pagination={{ pageSize: 5 }} 
+                        />
+                    ) : null}
+            </Card>
+        </div>
     </div>
         
         

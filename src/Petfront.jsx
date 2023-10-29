@@ -8,14 +8,12 @@ import PageContent from './components/admincompo/PageContent';
 
 function Petfront(){
     return<>
-        <div className='MainPage'>
             <Space className='SideMenuAndPageContent'>
               
-            <SideMenu></SideMenu>
-            <PageContent></PageContent>
+            <SideMenu />
+            <PageContent />
 
             </Space>
-        </div>
     </>
 }
 

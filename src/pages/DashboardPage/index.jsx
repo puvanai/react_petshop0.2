@@ -1,162 +1,104 @@
-import { Layout, Typography } from "antd"
 import React from "react";
-import Card from 'react-bootstrap/Card';
-import "./dashbords.css"
+import { PieChart, Pie, Tooltip, Legend,Cell,BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
+import { Typography, Table } from "antd";
+import './dashbords.css'
 
+function DashboardPage() {
+  //ข้อมูลจำนวน
+  const data = [
+    { name: "อาหารหมาและแมว", value: 300 },
+    { name: "อาหารเปียก", value: 500 },
+    { name: "อุปกรณ์สัตว์เลี้ยง", value: 800 },
+    { name: "ยาบำรุง", value: 400 },
+    { name: "อาหารเป็ด", value: 30 },
+    { name: "อาหารหมู", value: 50 },
+    { name: "อุปกรณ์สัตว์เลี้ยงใหญ", value: 700 },
+    { name: "ยาบำรุงะไรก็ได้", value: 100 },
+    
+  ];
 
+ 
 
+  //สินต้าขายดี
+  const topSellingProducts = [
+    { name: "สินค้า A", value: 500 },
+    { name: "สินค้า B", value: 800 },
+    { name: "สินค้า C", value: 1200 },
+    { name: "สินค้า D", value: 900 },
+  ];
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042","#99FFCC","#99FF00","#FFE4B5"];
+  
+  //ตาราง
+  const columns = [
+    {
+      title: "ชื่อสินค้า",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "จำนวน",
+      dataIndex: "value",
+      key: "value",
+    },
+  ];
 
+  const topmonth = [
+    { name: "ม.ค.", ยอดขาย: 30000 },
+    { name: "ก.พ.", ยอดขาย: 50000 },
+    { name: "มี.ค.", ยอดขาย: 80000 },
+    { name: "เม.ย.", ยอดขาย: 40000 },
+    { name: "พ.ค.", ยอดขาย: 60000 },
+    { name: "มิ.ย.", ยอดขาย: 70000 },
+  ];
 
+  return (
+    <div className="dashboard-container">
+      <div className="row">
 
-function DashboardPage () {
-    return(<>
-        <div>
-
-            
-            <Typography.Title level={4}></Typography.Title>
-            <div class="container-fluid">
-            <div class="row">
-            
-            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
-                
-                
-                <div class="row my-4">
-                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">ยอดขายทั้งหมด</h5>
-                            <div class="card-body">
-                              <h5 class="card-title text-success">200,000 บาท</h5>
-                              <p class="card-text"></p>
-                              
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">สินค้าเข้า</h5>
-                            <div class="card-body">
-                              <h5 class="card-title text-success">0 รายการ</h5>
-                              <p class="card-text"></p>
-                              
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header ">สินค้าออก</h5>
-                            <div class="card-body">
-                              <h5 class="card-title text-danger ">43 รายการ</h5>
-                              
-                            </div>
-                          </div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">รายชื่อสินค้าเข้า-ออก</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">รหัสสินค้า</th>
-                                            <th scope="col">ชื่อสินค้า</th>
-                                            <th scope="col">ราคา</th>
-                                            <th scope="col">วันที่สินค้าเข้า</th>
-                                            <th scope="col">วันที่สินค้าออก</th>
-                                            <th scope="col"></th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>อาหารช้าง</td>
-                                            <td>2500</td>
-                                            <td>Aug 31 2020</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary ">รายละเอียด</a></td>
-                                          </tr>
-                                          
-                                        </tbody>
-                                      </table>
-                                      <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">รหัสสินค้า</th>
-                                            <th scope="col">ชื่อสินค้า</th>
-                                            <th scope="col">ราคา</th>
-                                            <th scope="col">วันที่สินค้าเข้า</th>
-                                            <th scope="col">วันที่สินค้าออก</th>
-                                            <th scope="col"></th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>อาหารช้าง</td>
-                                            <td>2500</td>
-                                            <td>Aug 31 2020</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary ">รายละเอียด</a></td>
-                                          </tr>
-                                          
-                                        </tbody>
-                                      </table>
-                                </div>
-                                <a href="#" class="btn btn-block btn-light">View all</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">สินค้าขายดี</h5>
-                            <div class="card-body">
-                            <ol class="list-group list-group-numbered">
-                              <li class="list-group-item">Smart Heart Gold </li>
-                              <li class="list-group-item">อาหารเม็ด สำหรับสุนัขโต สูตรปลา 6 ชนิด</li>
-                              <li class="list-group-item">เจอร์ไฮไก่ผักน้ำเกรวี่120g</li>
-                            </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-xl-4">
-                        <div class="card">
-                            <h5 class="card-header">ยอดขาย 6 เดือนหลังสุด</h5>
-                            <div class="card-body">
-                                <div id="traffic-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-xl-4">
-                        <div class="card">
-                            <h5 class="card-header">ยอดขาย 6 เดือนหลังสุด</h5>
-                            <div class="card-body">
-                                <div id="traffic-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-            </main>
-        </div>
-
+        <div className="col-md-6">
+          <div className="graph-section">
+            <Typography.Title level={4}>สินต้าขายดี</Typography.Title>
+            <div className="graph-inner">
+              <PieChart width={400} height={300}>
+                <Pie data={topSellingProducts} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} fill="#8884d8">
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
             </div>
-
-            
-            
-
-
-            
+          </div>
         </div>
         
-    </>);
+        <div className="col-md-6">
+          <div className="barchart"> 
+            <Typography.Title level={4}>ยอดขายรายเดือน</Typography.Title>
+            <BarChart width={600} height={300} data={topmonth}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="ยอดขาย" fill="#8884d8" />
+            </BarChart>
+          </div>
+        </div>
+        
 
+        <div className="col-md-6">
+          <div className="table-section">
+            <Typography.Title level={4}>ตารางรายการสินค้า</Typography.Title>
+            <div className="table-inner">
+              <Table dataSource={data} columns={columns} pagination={{ pageSize: 3 }} />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
 }
 
-
-export default DashboardPage
+export default DashboardPage;

@@ -1,35 +1,19 @@
-.textname{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 300px;
-}
-.navbarcon{
-    padding-left: 50px;
-    display: flex;
-    
-}
-.navbar1 {
-    margin-right: auto;
+.ant-menu {
+    width: 100%;
+    padding: 20px 0;
   }
-  
-  .formsearch {
-    margin-left: 750px;
-  }
-
-.content{
-    margin-top: 50px;
+.Cardname{
+ margin-top: 1%;
+ margin-bottom: 5%;
 }
-.footer{
-    display: flex;
-    justify-content: center;
-
+.Cardcontent{
+    margin-top: 5%;
 }
-.quantity{
-    margin-left: 20px;
-    margin-right: 20px;
-
+.CatName{
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
-.modals{
-    
-    margin-top: 50px;
+.DogName{
+    margin-top: 5%;
+    margin-bottom: 5%;
 }

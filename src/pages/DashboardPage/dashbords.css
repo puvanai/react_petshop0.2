@@ -1,0 +1,19 @@
+/*ปรับขนาดของตาราง*/
+.table-section {
+    height: 350px; 
+    width: 500px;
+    overflow-y: auto; /* เพิ่มการเลื่อนแถบถ้าตารางมีข้อมูลมากเกินไป */
+    margin-left: 50px;
+  }
+
+  .graph-section {
+    width: 500px;
+    overflow-y: auto; 
+    margin-left: 50px;
+  }
+  .barchart{
+    width: 500px;
+    overflow-y: auto; 
+    margin-left: 5px;
+  }
+  

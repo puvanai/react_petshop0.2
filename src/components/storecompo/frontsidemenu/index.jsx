@@ -2,6 +2,8 @@ import { Menu } from "antd";
 import {AppstoreOutlined,QuestionCircleOutlined,SettingOutlined,FileOutlined,PoweroffOutlined,PlusCircleOutlined} from '@ant-design/icons'; 
 import { useNavigate } from "react-router-dom";
 import './frontsidemenu.css'
+
+
 function frontsidemenu () {
     const navigate = useNavigate()
     return<>
